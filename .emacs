@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -42,16 +40,16 @@
 
 ;; repositories
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/")) 
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 
 
 
 (defun remap-up-key-in-shell ()
   (local-set-key (kbd "<up>") 'comint-previous-input))
- 
+
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
@@ -59,7 +57,7 @@
 (global-set-key (kbd "C-x <up>") 'previous-multiframe-window)
 (global-set-key (kbd "C-x <down>") 'next-multiframe-window)
 
-;; font options 
+;; font options
 (defun fontify-frame (frame)
   (set-frame-parameter frame 'font "Consolas-11"))
 ;; Fontify current frame
@@ -67,10 +65,7 @@
 ;; Fontify any future frames
 (push 'fontify-frame after-make-frame-functions)
 
-;; Twitter integration
-(autoload 'twittering-mode  "twittering-mode" "twittering-mode" t)
-(setq twittering-use-master-password t)
-(setq twittering-icon-mode t)
+
 
 ;; open recent files
 (require 'recentf)
@@ -85,30 +80,6 @@
 ;;delete files recursively without confirmation
 (setq dired-recursive-deletes 'always)
 
-;; Scala functions disabled
-
-;; load the ensime lisp code...
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/dash-20150311.2355")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/ensime-emacs-master")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/auto-complete-20150408.1132")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/popup-20141002.320")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/s-20140910.334")
-(add-to-list 'load-path "~/.emacs.d/elpa/scala-mode2-20150617.2350/")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/company-20150417.1334")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/yasnippet-20150405.1526")
-(add-to-list 'load-path "/home/sree/.emacs.d/elpa/sbt-mode-20141110.1116")
-;;(require 'sbt-mode)
-;;(require 'ensime)
-
-
-;; This step causes the ensime-mode to be started whenever
-;; scala-mode is started for a buffer. You may have to customize this step
-;; if you're not using the standard scala mode.
-;;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-;;(push "/home/sree/NG/scala-2.10.3/bin/" exec-path)
-;;(push "/home/sree/sbt" exec-path)
-
 ;;Duplicate lines
 (defun duplicate-line()
   (interactive)
@@ -118,7 +89,7 @@
   (open-line 1)
   (next-line 1)
   (yank)
-)
+  )
 (global-set-key (kbd "C-d") 'duplicate-line)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -128,91 +99,76 @@
  )
 
 
-(add-to-list 'load-path "/home/sree/.emacs.d/jdee-2.4.1/lisp")
-;;(load "jde")
-(define-key global-map (kbd "RET") 'newline-and-indent) 
-
-
-(require 'gnus-demon)
-(gnus-demon-add-handler 'gnus-demon-scan-news 15 nil)
-
-
+(define-key global-map (kbd "RET") 'newline-and-indent)
 (setq dired-dwim-target t)
-
-(setq view-diary-entries-initially t
-       mark-diary-entries-in-calendar t
-       number-of-diary-entries 7)
- (add-hook 'diary-display-hook 'fancy-diary-display)
- (add-hook 'today-visible-calendar-hook 'calendar-mark-today)
- (add-hook 'list-diary-entries-hook 'sort-diary-entries t)
-
-
-;; Journal
-(setq journal-ext ".gpg") 
-;;(load "journal")
 
 
 
 
 
 (defun move-text-internal (arg)
-     (cond
-       ((and mark-active transient-mark-mode)
-        (if (> (point) (mark))
-            (exchange-point-and-mark))
-                 (let ((column (current-column))
-	         (text (delete-and-extract-region (point) (mark))))
-	         (forward-line arg)
-	         (move-to-column column t)
-	         (set-mark (point))
-	         (insert text)
-	         (exchange-point-and-mark)
-	         (setq deactivate-mark nil)))
-	   (t
-	     (beginning-of-line)
-	     (when (or (> arg 0) (not (bobp)))
-	     (forward-line)
-	     (when (or (< arg 0) (not (eobp)))
-	     (transpose-lines arg))
-	     (forward-line -1)))))
+  (cond
+   ((and mark-active transient-mark-mode)
+    (if (> (point) (mark))
+	(exchange-point-and-mark))
+    (let ((column (current-column))
+	  (text (delete-and-extract-region (point) (mark))))
+      (forward-line arg)
+      (move-to-column column t)
+      (set-mark (point))
+      (insert text)
+      (exchange-point-and-mark)
+      (setq deactivate-mark nil)))
+   (t
+    (beginning-of-line)
+    (when (or (> arg 0) (not (bobp)))
+      (forward-line)
+      (when (or (< arg 0) (not (eobp)))
+	(transpose-lines arg))
+      (forward-line -1)))))
 
 
 (defun move-text-down (arg)
-     "Move region (transient-mark-mode active) or current line
+       "Move region (transient-mark-mode active) or current line
   arg lines down."
-        (interactive "*p")
-	   (move-text-internal arg))
+       (interactive "*p")
+       (move-text-internal arg))
 
 
 (defun move-text-up (arg)
-     "Move region (transient-mark-mode active) or current line
+       "Move region (transient-mark-mode active) or current line
   arg lines up."
-        (interactive "*p")
-	   (move-text-internal (- arg)))
+       (interactive "*p")
+       (move-text-internal (- arg)))
 
 (global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
 
-;;Python                                                                                                                                                                
+;;Python
 
-(load-file "/home/sree/.emacs.d/emacs-for-python-master/epy-init.el")
-(add-to-list 'load-path "/home/sree/.emacs.d/emacs-for-python-master")
-(require 'epy-setup)      ;; It will setup other loads, it is required!                                                                                                 
-(require 'epy-python)     ;; If you want the python facilities [optional]                                                                                               
-(require 'epy-completion) ;; If you want the autocompletion settings [optional]                                                                                         
-(require 'epy-editing)    ;; For configurations related to editing [optional]                                                                                           
-(require 'epy-bindings)   ;; For my suggested keybindings [optional]                                                                                                    
-(require 'epy-nose)       ;; For nose integration                                                                                                                       
-
+(load-file "/home/cloudera/.emacs.d/emacs-for-python-master/epy-init.el")
+(add-to-list 'load-path "/home/cloudera/.emacs.d/emacs-for-python-master")
+(require 'epy-setup)      ;; It will setup other loads, it is required!
+(require 'epy-python)     ;; If you want the python facilities [optional]
+(require 'epy-completion) ;; If you want the autocompletion settings [optional]
+(require 'epy-editing)    ;; For configurations related to editing [optional]
+(require 'epy-bindings)   ;; For my suggested keybindings [optional]
+(require 'epy-nose)       ;; For nose integration
 (epy-setup-ipython)
-(global-hl-line-mode t) ;; To enable                                                                                                                                    
-;;(set-face-background 'hl-line "white") ;; change with the color that you like""))
+(require 'pymacs)
+(add-hook 'python-mode-hook 'highlight-indentation)
 
+
+;; Highlight the current line and keep an underline on the current line where i am in
 (global-hl-line-mode 1)
 (set-face-background 'highlight "#222")
 (set-face-foreground 'highlight nil)
 (set-face-underline-p 'highlight t)
 (electric-pair-mode t)
+
+;; Load iPython
+(setq ipython-command "~/.emacs.d/elpa/ipython-2927/ipython")
+
 
 (require 'highlight-indentation)
 (add-hook 'python-mode-hook 'highlight-indentation)
@@ -223,29 +179,42 @@
 
 
 (defun ipython ()
-    (interactive)
-    (term "/usr/bin/ipython"))
-
-
-
-
-
-
-
-(defun my-format-python-text ()
-  "untabify and wrap python comments"
   (interactive)
-  (untabify (point-min) (point-max))
-  (goto-char (point-min))
-  (while (re-search-forward comment-start nil t)
-    (call-interactively 'fill-paragraph)
-    (forward-line 1)))
-
-(eval-after-load "python"
-  '(progn
-     (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-     (define-key python-mode-map (kbd "<f4>") 'my-format-python-text)))
+  (term "/usr/bin/ipython"))
 
 
-(setq fill-column 79)
-(setq-default tab-width 2)
+
+;; Load python helpers/formatters and all
+;;(pymacs-load "ropemacs" "rope-")
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/elpy-20150502.740")
+(add-to-list 'load-path "~/.emacs.d/elpa/ipython-2927/")
+(setq magit-auto-revert-mode nil)
+
+
+;; Load xml formatter and stuff
+(load-file "/home/cloudera/.emacs.d/custom/xml-parse.el")
+(if (file-exists-p "~/.emacs.d/packages/xml-parse.el")
+      (let ((load-path load-path))
+	    (add-to-list 'load-path "~/.emacs.d/packages")
+	        (require 'xml-parse)))
+
+(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20150618.1949/")
+(load-file "/home/cloudera/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
+(load-file "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/auto-complete-acr.el")
+
+;; Magit - kill un-necessary warnings
+(setq magit-auto-revert-mode nil)
+(setq make-backup-files nil)
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+;; Loading ESS (Emacs Speaks Statistics) into emacs
+;;(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/ess-20150622.413")
+;; Loading R mode by default
+(autoload 'R-mode "ess-site.el" "ESS" t)
+(add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
+
+
+
+
+
