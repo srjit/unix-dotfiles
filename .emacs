@@ -216,5 +216,68 @@
 
 
 
+;; auto-complete
+(require 'yasnippet)
+(require 'popup)
 
+(setq yas/root-directory "~/.emacs.d/snippets")
+(yas/load-directory yas/root-directory)
+
+(set-default 'ac-sources
+	     '(ac-source-abbrev
+	       ac-source-dictionary
+	       ac-source-yasnippet
+	       ac-source-words-in-buffer
+	       ac-source-words-in-same-mode-buffers
+	       ac-source-semantic))
+
+(load-file "/home/cloudera/.emacs.d/custom/auto-complete-acr.el")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/dict")
+
+
+;;(load "auto-complete")
+(global-auto-complete-mode)
+(setq ess-use-auto-complete t)
+
+(require 'auto-complete-config)
+(ac-config-default)
+(global-auto-complete-mode t)
+
+(ac-set-trigger-key "TAB")
+
+
+;; set ctrl + up arrow for command history in ess console
+(defun ess-readline ()
+      "Move to previous command entered from script *or* R-process and copy
+   to prompt for execution or editing"
+      (interactive)
+      ;; See how many times function was called
+      (if (eq last-command 'ess-readline)
+	  (setq ess-readline-count (1+ ess-readline-count))
+	(setq ess-readline-count 1))
+      ;; Move to prompt and delete current input
+      (comint-goto-process-mark)
+      (end-of-buffer nil) ;; tweak here
+      (comint-kill-input)
+      ;; Copy n'th command in history where n = ess-readline-count
+      (comint-previous-prompt ess-readline-count)
+      (comint-copy-old-input)
+      ;; Below is needed to update counter for sequential calls
+      (setq this-command 'ess-readline))
+(global-set-key (kbd "\C-cp") 'ess-readline)
+
+;; Indentation for python
+;; Ignoring electric indentation
+(defun electric-indent-ignore-python (char)
+  "Ignore electric indentation for python-mode"
+  (if (equal major-mode 'python-mode)
+      'no-indent
+    nil))
+(add-hook 'electric-indent-functions 'electric-indent-ignore-python)
+;; Enter key executes newline-and-indent
+(defun set-newline-and-indent ()
+  "Map the return key with `newline-and-indent'"
+  (local-set-key (kbd "RET") 'newline-and-indent))
+(add-hook 'python-mode-hook 'set-newline-and-indent)
 
