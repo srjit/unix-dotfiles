@@ -181,7 +181,7 @@ alias stop='sh /home/sree/NG/stop-ng-hadoop.sh'
 alias quiz='java -jar /home/sree/scripts/quiz.jar; emacs ~/Desktop/quiz.txt'
 alias eng='emacs /home/sree/Desktop/My\ Stuff/english'
 
-alias python="/usr/bin/python3.4"
+#alias python="/usr/bin/python3.4"
 alias gdb="grails run-app --debug-fork"
 
 
