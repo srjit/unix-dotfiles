@@ -1,7 +1,7 @@
 
 ;;Python
-(load-file "/home/cloudera/.emacs.d/emacs-for-python-master/epy-init.el")
-(add-to-list 'load-path "/home/cloudera/.emacs.d/emacs-for-python-master")
+(load-file "/home/sree/.emacs.d/emacs-for-python-master/epy-init.el")
+(add-to-list 'load-path "/home/sree/.emacs.d/emacs-for-python-master")
 (require 'epy-setup)      ;; It will setup other loads, it is required!
 (require 'epy-python)     ;; If you want the python facilities [optional]
 (require 'epy-completion) ;; If you want the autocompletion settings [optional]
@@ -24,7 +24,7 @@
   (term "/usr/bin/ipython"))
 
 ;;(add-hook 'python-mode-hook 'highlight-indentation)
-(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/elpy-20150502.740")
+(add-to-list 'load-path "/home/sree/.emacs.d/elpa/elpy-20150502.740")
 (add-to-list 'load-path "~/.emacs.d/elpa/ipython-2927/")
 
 

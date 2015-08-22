@@ -146,8 +146,8 @@
 
 ;;Python
 
-(load-file "/home/cloudera/.emacs.d/emacs-for-python-master/epy-init.el")
-(add-to-list 'load-path "/home/cloudera/.emacs.d/emacs-for-python-master")
+(load-file "/home/sree/.emacs.d/emacs-for-python-master/epy-init.el")
+(add-to-list 'load-path "/home/sree/.emacs.d/emacs-for-python-master")
 (require 'epy-setup)      ;; It will setup other loads, it is required!
 (require 'epy-python)     ;; If you want the python facilities [optional]
 (require 'epy-completion) ;; If you want the autocompletion settings [optional]
@@ -187,21 +187,21 @@
 ;; Load python helpers/formatters and all
 ;;(pymacs-load "ropemacs" "rope-")
 (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/elpy-20150502.740")
+(add-to-list 'load-path "/home/sree/.emacs.d/elpa/elpy-20150502.740")
 (add-to-list 'load-path "~/.emacs.d/elpa/ipython-2927/")
 (setq magit-auto-revert-mode nil)
 
 
 ;; Load xml formatter and stuff
-(load-file "/home/cloudera/.emacs.d/custom/xml-parse.el")
+(load-file "/home/sree/.emacs.d/custom/xml-parse.el")
 (if (file-exists-p "~/.emacs.d/packages/xml-parse.el")
       (let ((load-path load-path))
 	    (add-to-list 'load-path "~/.emacs.d/packages")
 	        (require 'xml-parse)))
 
 (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20150618.1949/")
-(load-file "/home/cloudera/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
-(load-file "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/auto-complete-acr.el")
+(load-file "/home/sree/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
+(load-file "/home/sree/.emacs.d/elpa/auto-complete-20150618.1949/auto-complete-acr.el")
 
 ;; Magit - kill un-necessary warnings
 (setq magit-auto-revert-mode nil)
@@ -209,7 +209,7 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Loading ESS (Emacs Speaks Statistics) into emacs
-;;(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/ess-20150622.413")
+;;(add-to-list 'load-path "/home/sree/.emacs.d/elpa/ess-20150622.413")
 ;; Loading R mode by default
 (autoload 'R-mode "ess-site.el" "ESS" t)
 (add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
@@ -231,9 +231,9 @@
 	       ac-source-words-in-same-mode-buffers
 	       ac-source-semantic))
 
-(load-file "/home/cloudera/.emacs.d/custom/auto-complete-acr.el")
+(load-file "/home/sree/.emacs.d/custom/auto-complete-acr.el")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/dict")
+(add-to-list 'ac-dictionary-directories "/home/sree/.emacs.d/elpa/auto-complete-20150618.1949/dict")
 
 
 ;;(load "auto-complete")

@@ -3,7 +3,7 @@
 (require 'popup)
 
 (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20150618.1949/")
-(load-file "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/auto-complete-acr.el")
+(load-file "/home/sree/.emacs.d/elpa/auto-complete-20150618.1949/auto-complete-acr.el")
 
 
 (setq yas/root-directory "~/.emacs.d/snippets")
@@ -17,9 +17,9 @@
 	       ac-source-words-in-same-mode-buffers
 	                      ac-source-semantic))
 
-(load-file "/home/cloudera/.emacs.d/custom/auto-complete-acr.el")
+(load-file "/home/sree/.emacs.d/custom/auto-complete-acr.el")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/home/cloudera/.emacs.d/elpa/auto-complete-20150618.1949/dict")
+(add-to-list 'ac-dictionary-directories "/home/sree/.emacs.d/elpa/auto-complete-20150618.1949/dict")
 
 ;;(load "auto-complete")
 (global-auto-complete-mode)
@@ -31,7 +31,7 @@
 
 (ac-set-trigger-key "TAB")
 
-(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/r-autoyas-20140101.710")
+(add-to-list 'load-path "/home/sree/.emacs.d/elpa/r-autoyas-20140101.710")
 (require 'r-autoyas)
 
 (add-hook 'ess-mode-hook 'r-autoyas-ess-activate)

@@ -1,6 +1,6 @@
-(load-file "/home/cloudera/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
+(load-file "/home/sree/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
 ;; Loading ESS (Emacs Speaks Statistics) into emacs
-;;(add-to-list 'load-path "/home/cloudera/.emacs.d/elpa/ess-20150622.413")
+;;(add-to-list 'load-path "/home/sree/.emacs.d/elpa/ess-20150622.413")
 ;; Loading R mode by default
 (autoload 'R-mode "ess-site.el" "ESS" t)
 (add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
