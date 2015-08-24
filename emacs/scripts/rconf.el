@@ -1,4 +1,7 @@
-(load-file "/home/sree/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
+
+(setq username (getenv "USER"))
+
+(load-file (concat "/home/" username "/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el"))
 ;; Loading ESS (Emacs Speaks Statistics) into emacs
 ;;(add-to-list 'load-path "/home/sree/.emacs.d/elpa/ess-20150622.413")
 ;; Loading R mode by default
