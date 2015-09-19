@@ -34,9 +34,22 @@
 ;;delete files recursively without confirmation
 (setq dired-recursive-deletes 'always)
 
-;;(require 'highlight-indentation)
-;; Load python helpers/formatters and all
-;;(pymacs-load "ropemacs" "rope-")
+(add-to-list 'load-path "/home/cloudera/.emacs.d/themes/color-theme-6.6.0")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-ld-dark)))
+
+
+
+;; use projectile mode for projects
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
+
+;; fiplr for searching on files in a project
+(global-set-key (kbd "C-f") 'fiplr-find-file)
+(display-time-mode t)    
 
 
 

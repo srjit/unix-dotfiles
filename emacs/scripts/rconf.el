@@ -32,3 +32,14 @@
 (global-set-key (kbd "\C-cp") 'ess-readline)
 
 
+(defun ess-R-show-objects ()
+  "Calls rdired and associates with R process"
+  (interactive)
+  (if (get-buffer "*R*") ;;Only run if R is running
+      (progn
+	(ess-rdired)
+	(ess-rdired-switch-process))
+    (message "No R process")
+    )
+  )
+(global-set-key (kbd "\C-co") 'ess-R-show-objects)
