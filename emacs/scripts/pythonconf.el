@@ -44,3 +44,4 @@
  "Map the return key with `newline-and-indent'"
  (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'python-mode-hook 'set-newline-and-indent)
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
