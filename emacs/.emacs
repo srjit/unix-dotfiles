@@ -52,6 +52,46 @@
 (display-time-mode t)    
 
 
+(setq twittering-use-master-password t)
+(setq twittering-icon-mode t)
+
+(global-set-key (kbd "C-x f") 'project-explorer-open)
+
+
+(global-set-key (kbd "C-x .") 'next-buffer)
+(global-set-key (kbd "C-x ,") 'previous-buffer)
+
+
+(display-battery-mode t)
+(put 'scroll-left 'disabled nil)
+;;(require 'ess-site)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+  (add-to-list 'exec-path my-cabal-path))
+
+
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
+(eval-after-load 'haskell-cabal
+  '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+
+
+(setq sml/no-confirm-load-theme t)
+(load-file "~/.emacs.d/elpa/emacs-powerline/powerline.el")
+(setq powerline-arrow-shape 'curve)
+
+(setq powerline-default-separator-dir '(right . left))
+(custom-set-faces '(mode-line ((t (:foreground "#964514" :background "#bdbdbd" :box nil))))
+		  '(mode-line-inactive ((t (:foreground "#8E2323" :background "#7F8778" :box nil)))))
+(setq powerline-color1 "grey22")
+(setq powerline-color2 "grey40")
+
+(setq sml/theme 'powerline)
+(sml/setup)
+
+
 
 
 
