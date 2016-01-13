@@ -65,3 +65,20 @@
 
 (global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
+
+
+
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+(global-set-key (kbd "C-g") 'fiplr-find-file)
+(global-set-key (kbd "C-x f") 'project-explorer-open)
+(global-set-key (kbd "C-x .") 'next-buffer)
+(global-set-key (kbd "C-x ,") 'previous-buffer)
