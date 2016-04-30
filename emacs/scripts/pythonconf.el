@@ -47,7 +47,7 @@
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 
-
+;; install pyflakes via : sudo aptitude install pyflakes
 
 (load-file (concat "/home/" username "/.emacs.d/elpa/flymake-cursor-20130822.332/flymake-cursor.el"))
 (global-set-key [f4] 'flymake-goto-next-error)
