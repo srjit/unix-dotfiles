@@ -45,3 +45,23 @@
  (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'python-mode-hook 'set-newline-and-indent)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+
+
+
+
+(load-file (concat "/home/" username "/.emacs.d/elpa/flymake-cursor-20130822.332/flymake-cursor.el"))
+(global-set-key [f4] 'flymake-goto-next-error)
+
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+		       'flymake-create-temp-inplace))
+	   (local-file (file-relative-name
+			temp-file
+			(file-name-directory buffer-file-name))))
+      (list "pyflakes" (list local-file))))
+
+  (add-to-list 'flymake-allowed-file-name-masks
+	       '("\\.py\\'" flymake-pyflakes-init)))
+
+(add-hook 'find-file-hook 'flymake-find-file-hook)
