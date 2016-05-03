@@ -1,0 +1,117 @@
+\documentclass[10pt,landscape]{article}
+
+\usepackage{multicol}
+\usepackage{array}
+\newcolumntype{L}{>{\ttfamily\color{red!50}}l}
+
+\usepackage[landscape]{geometry}
+\geometry{paperwidth=508mm,paperheight=286mm,top=1cm,left=3cm,right=3cm,bottom=1cm}
+
+\usepackage{xcolor}
+\pagecolor{black}
+\color{yellow!50}
+
+\makeatletter
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\large\bfseries\color{cyan!75}}}
+\makeatother
+
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newcommand{\textpink}[1]{\textcolor{red!50}{\texttt{#1}}}
+\newcommand{\textyellow}[1]{\textcolor{yellow!50}{\textbf{#1}}}
+
+
+\begin{document}
+
+\begin{multicols*}{4}
+
+  \setlength{\premulticols}{1pt}
+  \setlength{\postmulticols}{1pt}
+  \setlength{\multicolsep}{1pt}
+  \setlength{\columnsep}{2pt}
+
+  \begin{center}
+    \color{cyan!75}
+    \Large\textbf{GNU Emacs Reference Card} \\
+    \normalsize (for version 24+)\\
+  \end{center}
+
+  \subsection{Starting Emacs}
+  To enter GNU Emacs 24, just type its name:\quad\textpink{emacs}
+
+  \subsection{Ensime - Source}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Format the current source file & C-c C-v f \\
+    List all references to the symbol under the cursor & C-c C-v r \\
+    Show the type of the symbol under the cursor & C-c C-v t \\
+    Undo a refactoring or formatting change & C-c C-v u \\
+  \end{tabular}
+
+  \subsection{Ensime - Compiling}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Typecheck the current file & C-c C-c c \\
+    Typecheck all files in the project & C-c C-c a \\
+  \end{tabular}
+
+  \subsection{Ensime - Refactoring}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Add type to the symbol under the cursor & C-c C-r a \\
+    Organize imports in the current file & C-c C-r o \\
+    Import the type under the cursor & C-c C-r t \\
+    Rename the symbol under the cursor & C-c C-r r \\
+    Extract the region into a local value & C-c C-r l \\
+    Extract the region into a method & C-c C-r m \\
+    Inline the local value under the cursor & C-c C-r i \\
+  \end{tabular}
+
+  \subsection{Ensime - Navigation}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Jump to the definition of the symbol under the cursor  & M-. \\
+    Search globally for methods or types & C-c C-v v \\
+  \end{tabular}
+
+  \subsection{Ensime - Documentation}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Browse the documentation of the symbol under the cursor & C-c C-v d \\
+  \end{tabular}
+  
+
+  \subsection{Ropemacs - Python | Rope}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    Goto definition & C-c g \\
+    Rename / Refactor & C-c r r \\
+    Extract Variable & C-c r l \\
+    Extract Method & C-c r m \\
+    Inline & C-c r i \\
+    Rope move & C-c r v \\
+    Rename current module & C-c r 1 r \\
+    Introduce factory & C-c r f \\
+    Organize imports & C-c r o \\
+    Code Assist & C-c r a / \\
+    Find occurances & C-c r a f \\
+    Show doc & C-c r a d \\
+  \end{tabular}
+
+  
+  \subsection{Files}
+  \begin{tabular}{@{}p{7cm}L@{}}
+    \textbf{read} a file into Emacs & C-x C-f \\
+    \textbf{save} a file back to disk & C-x C-s \\
+    save \textbf{all} files & C-x s \\
+    insert contents of another file into this buffer & C-x i \\
+  \end{tabular}
+
+  \subsection{Motion}
+  \begin{tabular}{@{}p{5.75cm}LL@{}}
+    \textbf{entity to move over } & \textyellow{backward} & \textyellow{forward} \\
+    character & C-b & C-f \\
+    scroll to next | previous screen & C-v & M-v \\
+  \end{tabular}
+
+\end{multicols*}
+\end{document} 
