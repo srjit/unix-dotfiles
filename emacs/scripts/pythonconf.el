@@ -30,6 +30,10 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/ipython-2927/")
 
 
+;; tags for a file
+(add-to-list 'load-path "~/.emacs.d/scripts/taglist.el")
+(global-set-key (kbd "C-h") 'taglist)
+
 
 ;; Indentation for python
 ;; Ignoring electric indentation
