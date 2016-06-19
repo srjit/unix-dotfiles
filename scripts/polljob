@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while true
+do
+    oozie job -info $1
+    echo "Press [ CTRL+C ] to stop.."
+    sleep 5
+done

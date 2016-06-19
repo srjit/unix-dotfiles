@@ -1,0 +1,5 @@
+#!/bin/sh
+
+hadoop fs -rmr  praas-workflows/searshs
+hadoop fs -mkdir praas-workflows/searshs
+hadoop fs -put /home/cloudera/code/PraaS_Workflow/oozie/praas-workflows/PraaS/*  praas-workflows/searshs
