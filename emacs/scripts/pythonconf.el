@@ -27,6 +27,9 @@
   (setq python-shell-interpreter "ipython"))
 
 
+(require 'jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+
 (defun ipython ()
   (interactive)
   (term "/usr/bin/ipython"))
