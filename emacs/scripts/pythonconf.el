@@ -1,6 +1,12 @@
 
 (setq username (getenv "USER"))
 
+;; Download Jedi Starter from
+;; https://github.com/wernerandrew/jedi-starter
+;; and put it in ~/.emacs.d
+;; run sudo ./setup.sh
+(load-file "/home/sree/.emacs.d/jedi-starter/jedi-starter.el")
+
 ;;Python
 (load-file (concat "/home/" username "/.emacs.d/emacs-for-python-master/epy-init.el"))
 (add-to-list 'load-path (concat "/home/" username "/.emacs.d/emacs-for-python-master"))
