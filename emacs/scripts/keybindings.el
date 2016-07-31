@@ -1,4 +1,4 @@
-;; BigMoster's custom keybindings
+p;; BigMoster's custom keybindings
 
 (defun remap-up-key-in-shell ()
   (local-set-key (kbd "<up>") 'comint-previous-input))
@@ -20,7 +20,7 @@
   (next-line 1)
   (yank)
   )
-(global-set-key (kbd "C-d") 'duplicate-line)
+(global-set-key (kbd "C-t") 'duplicate-line)
 
 
 (define-key global-map (kbd "RET") 'newline-and-indent)

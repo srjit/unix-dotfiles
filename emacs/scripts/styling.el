@@ -1,6 +1,6 @@
 ;; font options
 (defun fontify-frame (frame)
-  (set-frame-parameter frame 'font "Consolas-11"))
+  (set-frame-parameter frame 'font "Consolas-10"))
 ;; Fontify current frame
 (fontify-frame nil)
 ;; Fontify any future frames
@@ -57,5 +57,4 @@
 
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
-
 (setq display-time-mode 1)
