@@ -90,7 +90,3 @@
 	 (string-match "\\.py$" (buffer-file-name))
 	 (eq 1 (point-max)))
     (insert-file "~/.emacs.d/templates/python-template.py")))
-
-
-
-
