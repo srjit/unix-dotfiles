@@ -46,3 +46,6 @@
    (local-set-key (kbd "C-x '") 'sbt-run-previous-command)))
 
 
+(load-file "/home/sree/.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
+(require 'flymake-scala)
+(add-hook 'scala-mode-hook 'flymake-scala-load)
