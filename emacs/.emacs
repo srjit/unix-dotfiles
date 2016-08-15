@@ -13,7 +13,7 @@
 (load-file (concat "/home/" username "/.emacs.d/scripts/git.el"))
 (load-file (concat "/home/" username "/.emacs.d/scripts/xmlconf.el"))
 (load-file (concat "/home/" username "/.emacs.d/scripts/eshell.el"))
-
+(load-file (concat "/home/" username "/.emacs.d/scripts/sbt.el")
 
 ;; Custom Keybindings
 (load-file (concat "/home/" username "/.emacs.d/scripts/keybindings.el"))
@@ -62,6 +62,8 @@
 
 
 
+;; highlight the marked region
+(set-face-attribute 'region nil :background "#666")
 
 
 
