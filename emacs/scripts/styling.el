@@ -1,6 +1,6 @@
 ;; font options
 (defun fontify-frame (frame)
-  (set-frame-parameter frame 'font "Consolas-11"))
+  (set-frame-parameter frame 'font "Consolas-10"))
 ;; Fontify current frame
 (fontify-frame nil)
 ;; Fontify any future frames
@@ -35,15 +35,26 @@
           (color-theme-ld-dark)))
 
 
-(setq sml/no-confirm-load-theme t)
-(load-file "~/.emacs.d/elpa/emacs-powerline/powerline.el")
-(setq powerline-arrow-shape 'curve)
+;; (setq sml/no-confirm-load-theme t)
+;; (load-file "~/.emacs.d/elpa/emacs-powerline/powerline.el")
+;; (setq powerline-arrow-shape 'curve)
 
-(setq powerline-default-separator-dir '(right . left))
-(custom-set-faces '(mode-line ((t (:foreground "#964514" :background "#bdbdbd" :box nil))))
-		  '(mode-line-inactive ((t (:foreground "#8E2323" :background "#7F8778" :box nil)))))
+;; (setq powerline-default-separator-dir '(right . left))
+;; (custom-set-faces '(mode-line ((t (:foreground "#964514" :background "#bdbdbd" :box nil))))
+;; 		  '(mode-line-inactive ((t (:foreground "#8E2323" :background "#7F8778" :box nil)))))
+;; (setq powerline-color1 "grey22")
+;; (setq powerline-color2 "grey40")
+
+;; (setq sml/theme 'powerline)
+
+
+;; add vim inspired powerline from
+;; https://github.com/jonathanchu/emacs-powerline
+(load-file "~/.emacs.d/custom/emacs-powerline/powerline.el")
+(custom-set-faces
+ '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+ '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
-
-(setq sml/theme 'powerline)
-
+(setq display-time-mode 1)

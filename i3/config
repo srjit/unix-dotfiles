@@ -9,6 +9,24 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+
+set $ws1 "1:Emacs"
+set $ws2 "2:www"
+set $ws3 "3:Terminal"
+set $ws4 "4:Files"
+
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+
+exec --no-startup-id i3-msg 'workspace 4:Files; exec caja'
+exec --no-startup-id i3-msg 'workspace 3:Terminal; exec terminator'
+exec --no-startup-id i3-msg 'workspace 2:www; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 1:Emacs; exec emacs'
+
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -16,6 +34,8 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
+
+
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -90,10 +110,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+# bindsym $mod+1 workspace 1
+# bindsym $mod+2 workspace 2
+# bindsym $mod+3 workspace 3
+# bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -102,10 +122,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+# bindsym $mod+Shift+1 move container to workspace 1
+# bindsym $mod+Shift+2 move container to workspace 2
+# bindsym $mod+Shift+3 move container to workspace 3
+# bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
