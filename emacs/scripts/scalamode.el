@@ -49,3 +49,20 @@
 (load-file "/home/sree/.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
 (require 'flymake-scala)
 (add-hook 'scala-mode-hook 'flymake-scala-load)
+
+
+
+
+;#############################################
+;To load scala templates
+(add-hook 'find-file-hooks 'maybe-load-template)
+(defun maybe-load-template ()
+  (interactive)
+  (when (and
+	 (string-match "\\.scala$" (buffer-file-name))
+	 (eq 1 (point-max)))
+    (insert-file "~/.emacs.d/templates/scala-template.txt")))
+
+
+
+(setq ensime-completion-style 'auto-complete)
