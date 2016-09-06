@@ -24,7 +24,7 @@ font pango:DejaVu Sans Mono 8
 # font, it doesn’t scale on retina/hidpi displays.
 
 #font
-font xft:Terminus, FontAwesome 8
+font xft:Terminus, Operator Mono 9
 
 # Abstand
 new_window pixel 3
