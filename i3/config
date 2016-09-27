@@ -9,33 +9,13 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
-set $ws1 "1:Emacs"
-set $ws2 "2:www"
-set $ws3 "3:Terminal"
-set $ws4 "4:Files"
-
-
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-
-exec --no-startup-id i3-msg 'workspace 4:Files; exec caja'
-exec --no-startup-id i3-msg 'workspace 3:Terminal; exec terminator'
-exec --no-startup-id i3-msg 'workspace 2:www; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 1:Emacs; exec emacs'
-
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
-
-
+#font pango:Operator Mono 8
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -43,14 +23,33 @@ font pango:DejaVu Sans Mono 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+font xft:Terminus, Operator Mono 9
+#font pango:Source Sans Pro-10
+
+# Abstand
+new_window pixel 3
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# multi-monitor
+bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --left-of eDP1
+
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# color
+set $blue #005588
+set $gray1 #484848
+set $gray2 #333333
+ 
+# client.focused            $gray1   $gray1   #FFFFFF   #333333
+# client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
+# client.unfocused          $gray2   $gray2   #FFFFFF   #000000
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -109,25 +108,43 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# assign workspace variables
+set $WS1 1.code
+set $WS2 2.www
+set $WS3 3.term
+set $WS4 4.media
+set $WS5 5.misc
+set $WS6 6.irc
+
 # switch to workspace
-# bindsym $mod+1 workspace 1
-# bindsym $mod+2 workspace 2
-# bindsym $mod+3 workspace 3
-# bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+
+
+# Move to workspace
+assign [class="emacs"] $WS1
+assign [class="google-chrome"] $WS2
+assign [instance="terminator"] $WS3
+assign [class="Gthumb|MPlayer|mpv|Xfburn|Pitivi|Popcorntime|Gmusicbrowser|Ogmrip|Spotify"] $WS4
+assign [class="Thunar|Eclipse|Pinta|Blender|Catfish|Galculator|Codeblocks"] $WS5
+
+
 # move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace 1
-# bindsym $mod+Shift+2 move container to workspace 2
-# bindsym $mod+Shift+3 move container to workspace 3
-# bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -142,91 +159,83 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+        # These bindings trigger as soon as you enter the resize mode
 
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-bindsym j resize shrink width 10 px or 10 ppt
-bindsym k resize grow height 10 px or 10 ppt
-bindsym l resize shrink height 10 px or 10 ppt
-bindsym semicolon resize grow width 10 px or 10 ppt
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
-# same bindings, but for the arrow keys
-bindsym Left resize shrink width 10 px or 10 ppt
-bindsym Down resize grow height 10 px or 10 ppt
-bindsym Up resize shrink height 10 px or 10 ppt
-bindsym Right resize grow width 10 px or 10 ppt
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-# back to normal: Enter or Escape
-bindsym Return mode "default"
-bindsym Escape mode "default"
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
+# volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% && killall -SIGUSR1 i3status
+
+# brightness
+bindsym XF86MonBrightnessUp exec "xbacklight +10"
+bindsym XF86MonBrightnessDown exec "xbacklight -10"
+
+
+exec --no-startup-id i3-msg 'exec emacs'
+exec --no-startup-id feh --bg-fill /home/sree/Pictures/sky.jpg
+exec --no-startup-id nm-applet
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+# bar {
+#         position top
+#         # status_command ~/.i3/conky
+# 	status_command i3status -c ~/.i3/i3status.conf
+#         colors {
+#                 statusline #AAAAAA
+#                 background #333333
+#                 focused_workspace $gray2 $gray2 #FFFFFF
+#                 inactive_workspace $gray1 $gray1 #AAAAAA
+#         }
+# }
+
+
 bar {
-
-    colors {
-        # Whole color settings
-          background #000000
-    	  statusline #ffffff
-    	  separator  #666666
-
-    	  # Type             border  background font
-    	  focused_workspace  #008fff #007fff #ffffff	
-    	  active_workspace   #333333 #5f676a #ffffff
-    	  inactive_workspace #333333 #222222 #888888
-    	  urgent_workspace   #aa0000 #909000 #ffffff
-     }
-# i3bar position
-  position top
-# Using custom i3status.conf
-  status_command i3status -c ~/.i3/i3status.conf
+        position top	
+	status_command i3blocks -c ~/.i3/i3blocks.conf
+  colors {
+    separator #268bd2
+    background #002b36
+    statusline #839496
+    focused_workspace #fdf6e3 #6c71c4 #fdf6e3
+    active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    inactive_workspace #002b36 #586e75 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
 }
 
 
-# move focused container to workspace
-font pango: Consolas 10
-# Startup programs
-exec --no-startup-id nm-applet
-exec --no-startup-id terminator 'workspace 1:Console;'
-exec --no-startup-id feh --bg-fill /home/sree/Pictures/sky.jpg
+client.focused #6c71c4 #6c71c4 #fdf6e3 #6c71c4
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
-# Pulse Audio controls
+gaps inner 5
+gaps outer 2
 
+smart_gaps on
+smart_borders on
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 -- +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5%
-
-
-# bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
-# bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-# bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-
-# set $sink `pactl list short sinks | grep RUNNING | cut -f1`
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +10%
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -- -10%
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
-
-# bindsym Mod4+comma exec amixer set Master -q 5%-
-# bindsym Mod4+period exec amixer set Master -q 5%+
-
-client.focused              #3f3f3f #3f3f3f #EEEEEE
-client.focused_inactive #333333 #5F676A #EEEEEE
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
-
-bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
-bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
-bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
-bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
