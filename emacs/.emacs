@@ -1,4 +1,3 @@
-
 (setq username (getenv "USER"))
 
 ;; Kill unwanted buffers
