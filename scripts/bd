@@ -1,0 +1,2 @@
+#! /bin/bash
+sudo ./.i3/brightness - 20
