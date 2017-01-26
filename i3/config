@@ -60,7 +60,8 @@ set $gray2 #333333
 #bindsym $mod+d exec dmenu_run
 
 # install ROFI to run this - rofi replaces i3 dmenu
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Roboto Slab 18" -opacity "80" -lines 8 -line-margin 4 -width 100 -padding 160 -terminal urxvtc
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -198,11 +199,13 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -.50  
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # brightness
-bindsym XF86MonBrightnessUp exec "xbacklight +10"
-bindsym XF86MonBrightnessDown exec "xbacklight -10"
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 
 exec --no-startup-id i3-msg 'exec emacs'
+exec --no-startup-id 'rofi -key-run $mod+d'
+exec --no-startup-id exec ~/.dropbox-dist/dropboxd
 exec --no-startup-id feh --bg-fill /home/sree/Pictures/sky.jpg
 exec --no-startup-id nm-applet
 
