@@ -57,7 +57,11 @@ set $gray2 #333333
 # client.unfocused          $gray2   $gray2   #FFFFFF   #000000
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+
+# install ROFI to run this - rofi replaces i3 dmenu
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
