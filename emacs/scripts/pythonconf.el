@@ -24,7 +24,9 @@
 (setq ipython-command "~/.emacs.d/elpa/ipython-2927/ipython")
 
 (when (executable-find "ipython")
-  (setq python-shell-interpreter "ipython"))
+  (setq python-shell-interpreter "ipython"
+    python-shell-interpreter-args "--simple-prompt -i")
+)
 
 
 (require 'jedi)
