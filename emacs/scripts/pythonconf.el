@@ -92,3 +92,15 @@
 	 (string-match "\\.py$" (buffer-file-name))
 	 (eq 1 (point-max)))
     (insert-file "~/.emacs.d/templates/python-template.py")))
+
+
+
+
+;; Pymacs
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+;;(require 'pymacs)
