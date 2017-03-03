@@ -13,6 +13,7 @@
 (load-file (concat "/home/" username "/.emacs.d/scripts/xmlconf.el"))
 (load-file (concat "/home/" username "/.emacs.d/scripts/eshell.el"))
 (load-file (concat "/home/" username "/.emacs.d/scripts/sbt.el")
+(load-file (concat "/home/" username "/.emacs.d/scripts/latex.el")
 
 ;; Custom Keybindings
 (load-file (concat "/home/" username "/.emacs.d/scripts/keybindings.el"))
