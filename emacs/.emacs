@@ -65,6 +65,11 @@
 ;; highlight the marked region
 (set-face-attribute 'region nil :background "#666")
 
+;; Custom Keybindings
+(load-file "/home/sree/.emacs.d/scripts/keybindings.el")
+
+(load-theme 'monokai t)
+(xclip-mode 1)
 
 
 
