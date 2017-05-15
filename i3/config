@@ -274,3 +274,7 @@ mode "System Control:" {
     bindsym Escape mode "default"
 
 }
+
+
+## Command to switch displays in dual monitors
+## xrandr --output HDMI-1-1 --mode 1920x1080
