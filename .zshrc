@@ -1,3 +1,5 @@
+export TERM="xterm-256color"
+
 # Path to your oh-my-zsh configuration.
 ZSH=/home/sree/.oh-my-zsh
 
@@ -6,6 +8,9 @@ ZSH=/home/sree/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="af-magic"
+
+## https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#step-1-install-powerlevel9k
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 setopt append_history no_inc_append_history no_share_history
 
