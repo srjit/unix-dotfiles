@@ -1,0 +1,11 @@
+#!/bin/bash
+
+output=($(python3 datatau.py))
+
+echo "$output" | sed -r 's/\*/\ /g'
+
+MAIN_DOMAIN='http://www.datatau.com/'
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  xdg-open "${MAIN_DOMAIN}"
+fi
