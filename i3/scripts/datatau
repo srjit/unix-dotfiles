@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output=($(python3 datatau.py))
+output=($(python3 /home/sree/.i3/scripts/datatau.py))
 
 echo "$output" | sed -r 's/\*/\ /g'
 
