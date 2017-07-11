@@ -7,6 +7,13 @@ chsh -s $(which zsh)
 sudo apt-get install acpi i3blocks
 sudo apt-get install lxappearance gtk-chtheme qt4-qtconfig
 
+# install light - screen
+git clone git@github.com:haikarainen/light.git
+cd light
+sudo apt-get install help2man
+make
+sudo make install
+
 #powerline fonts
 # clone
 git clone https://github.com/powerline/fonts.git
@@ -33,5 +40,20 @@ sudo apt-get install python-rope
 
 # tensorflow
 sudo apt-get install libcupti-dev
+
 ## install nvidia cuda
 https://developer.nvidia.com/cuda-downloads
+http://www.nvidia.com/object/gpu-accelerated-applications-tensorflow-installation.html
+
+# download cuda dnn from here  - IMPORTANT - check the version of cuda dnn shared object - it might
+# be looking for 
+
+#  cd folder/extracted/contents
+#  sudo cp -P include/cudnn.h /usr/include
+#  sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/
+#  sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
+
+
+## vlc
+sudo apt-get install vlc
+
