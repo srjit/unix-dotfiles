@@ -119,12 +119,13 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # assign workspace variables
-set $WS1 1.code
-set $WS2 2.www
-set $WS3 3.term
-set $WS4 4.media
-set $WS5 5.misc
-set $WS6 6.irc
+##     http://fontawesome.io/cheatsheet/
+set $WS1  code
+set $WS2  www
+set $WS3  term
+set $WS4  media
+set $WS5  chat
+set $WS6  irc
 
 # switch to workspace
 bindsym $mod+1 workspace $WS1

@@ -294,3 +294,7 @@
 ;; (eval-after-load 'haskell-cabal
 ;;   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
 
+
+
+
+
