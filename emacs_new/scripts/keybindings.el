@@ -1,5 +1,4 @@
-;; BigMoster's custom keybindings
-
+;; Sreejith's custom keybindings
 (defun remap-up-key-in-shell ()
   (local-set-key (kbd "<up>") 'comint-previous-input))
 (global-set-key (kbd "C-x <up>") 'previous-multiframe-window)
