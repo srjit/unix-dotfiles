@@ -199,3 +199,5 @@ alias python=python2.7
 
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/include"
 export CUDA_HOME=/usr/local/cuda
+
+alias ncmpcpp="nohup mopidy &;mkfifo /tmp/mpd.fifo;while :; do yes $’\n’ | nc -lu 127.0.0.1 5555 > /tmp/mpd.fifo; done &;ncmpcpp"
