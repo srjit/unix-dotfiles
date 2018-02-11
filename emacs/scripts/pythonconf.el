@@ -1,23 +1,17 @@
+;; ;;Python
+;; (load-file "/home/sree/.emacs.d/emacs-for-python-master_new/epy-init.el")
+;; (load-file "/home/sree/.emacs.d/jedi-starter/jedi-starter.el")
+;; (add-to-list 'load-path "/home/sree/.emacs.d/emacs-for-python-master")
 
-(setq username (getenv "USER"))
 
-;; Download Jedi Starter from
-;; https://github.com/wernerandrew/jedi-starter
-;; and put it in ~/.emacs.d
-;; run sudo ./setup.sh
-(load-file "/home/sree/.emacs.d/jedi-starter/jedi-starter.el")
+;; (require 'epy-python)     ;; If you want the python facilities [optional]
+;; (require 'epy-completion) ;; If you want the autocompletion settings [optional]
+;; (require 'epy-editing)    ;; For configurations related to editing [optional]
+;; (require 'epy-bindings)   ;; For my suggested keybindings [optional]
+;; (require 'epy-nose)       ;; For nose integration
+;;(epy-setup-ipython)
+;;(require 'pymacs)
 
-;;Python
-(load-file (concat "/home/" username "/.emacs.d/emacs-for-python-master/epy-init.el"))
-(add-to-list 'load-path (concat "/home/" username "/.emacs.d/emacs-for-python-master"))
-(require 'epy-setup)      ;; It will setup other loads, it is required!
-(require 'epy-python)     ;; If you want the python facilities [optional]
-(require 'epy-completion) ;; If you want the autocompletion settings [optional]
-(require 'epy-editing)    ;; For configurations related to editing [optional]
-(require 'epy-bindings)   ;; For my suggested keybindings [optional]
-(require 'epy-nose)       ;; For nose integration
-(epy-setup-ipython)
-(require 'pymacs)
 ;;(add-hook 'python-mode-hook 'highlight-indentation)
 
 ;; Load iPython
@@ -25,26 +19,13 @@
 
 (when (executable-find "ipython")
   (setq python-shell-interpreter "ipython"
-    python-shell-interpreter-args "--simple-prompt -i")
-)
+	python-shell-interpreter-args "--simple-prompt -i")
+  )
 
-
-(require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
 
 (defun ipython ()
   (interactive)
-  (term "/usr/bin/ipython"))
-
-;;(add-hook 'python-mode-hook 'highlight-indentation)
-(add-to-list 'load-path (concat "/home/" username "/.emacs.d/elpa/elpy-20150502.740"))
-(add-to-list 'load-path "~/.emacs.d/elpa/ipython-2927/")
-
-
-;; tags for a file
-(add-to-list 'load-path "~/.emacs.d/scripts/taglist.el")
-(global-set-key (kbd "C-h") 'taglist)
-
+  (term "/usr/bin/ipython3"))
 
 ;; Indentation for python
 ;; Ignoring electric indentation
@@ -54,37 +35,23 @@
       'no-indent
     nil))
 (add-hook 'electric-indent-functions 'electric-indent-ignore-python)
+
+;; (require 'jedi)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+
+
+
 ;; Enter key executes newline-and-indent
 (defun set-newline-and-indent ()
- "Map the return key with `newline-and-indent'"
- (local-set-key (kbd "RET") 'newline-and-indent))
+  "Map the return key with `newline-and-indent'"
+  (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'python-mode-hook 'set-newline-and-indent)
+
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 
-;; install pyflakes via : sudo aptitude install pyflakes
-
-(load-file (concat "/home/" username "/.emacs.d/elpa/flymake-cursor-20130822.332/flymake-cursor.el"))
-(global-set-key [f4] 'flymake-goto-next-error)
-
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-		       'flymake-create-temp-inplace))
-	   (local-file (file-relative-name
-			temp-file
-			(file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-
-  (add-to-list 'flymake-allowed-file-name-masks
-	       '("\\.py\\'" flymake-pyflakes-init)))
-
-(add-hook 'find-file-hook 'flymake-find-file-hook)
-
-
-
-;;#############################################
-;;To load python templates
+					;#############################################
+					;To load python templates
 (add-hook 'find-file-hooks 'maybe-load-template)
 (defun maybe-load-template ()
   (interactive)
@@ -95,7 +62,6 @@
 
 
 
-
 ;; Pymacs
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
@@ -103,4 +69,45 @@
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
 (autoload 'pymacs-autoload "pymacs")
-;;(require 'pymacs)
+(require 'pymacs)
+
+
+(eval-after-load "python"
+  '(define-key python-mode-map [(control c)(kbd "RET")] 'python-shell-send-region))
+
+(setq yas-snippet-dirs "/home/sree/.emacs.d/elpa/yasnippet-20150415.244/snippets")
+
+;;(elpy-enable)
+
+
+;; (add-hook 'python-mode-hook
+;; 	  (lambda ()
+;; 	    (setq-default indent-tabs-mode t)
+;; 	    (setq-default tab-width 8)
+;; 	    (setq-default py-indent-tabs-mode t)
+;; 	    (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+
+
+
+;;(global-set-key (kbd "C-c e") 'flymake-display-err-menu-for-current-line)
+
+(add-hook 'python-mode-hook 'elpy-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+;; (add-hook 'python-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'python-mode-hook 'flymake-mode)
+
+
+;;(setq python-python-command "/usr/bin/python3")
+
+;; (setq path-to-ctags "/usr/bin/ctags") 
+
+;; (defun create-tags (dir-name)
+;;   "Create tags file."
+;;   (interactive "DDirectory: ")
+;;   (eshell-command 
+;;    (format "find %s -type f -name \"*.[py]\" | etags -" dir-name)))
+
+(global-set-key (kbd "C-c e") 'flycheck-display-error-at-point)
+
+;; (setq companymode t)
+;; (setq company-idle-delay 0)

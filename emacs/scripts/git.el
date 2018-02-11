@@ -1,4 +1,3 @@
-
 ;; Magit - kill un-necessary warnings
 (setq magit-auto-revert-mode nil)
 (setq make-backup-files nil)

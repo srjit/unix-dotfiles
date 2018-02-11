@@ -1,13 +1,13 @@
 
-(require 'simplenote)
-(setq simplenote-email "sreejith2904@gmail.com")
-(setq simplenote-password "helloworld")
-;;(simplenote-setup)
+;; (require 'simplenote)
+;; (setq simplenote-email "sreejith2904@gmail.com")
+;; (setq simplenote-password "helloworld")
+;; ;;(simplenote-setup)
 
-(require 'simplenote2)
-(setq simplenote2-email "sreejith2904@gmail.com")
-(setq simplenote2-password "helloworld")
-;;(simplenote2-setup)
+;; (require 'simplenote2)
+;; (setq simplenote2-email "sreejith2904@gmail.com")
+;; (setq simplenote2-password "helloworld")
+;; ;;(simplenote2-setup)
 
 
 
@@ -28,6 +28,10 @@
 (setq TeX-PDF-mode t)
 
 
+(load-file "/home/sree/.emacs.d/custom/org-bullets.el")
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
 ;; ;; Settings
 ;; (add-to-list 'load-path "/home/sree/.emacs.d/elpa/spotify.el-master")
 ;; (require 'spotify)
@@ -37,5 +41,5 @@
 
 
 ;; create a todo buffer
-(pop-to-buffer "*TODO*")
-(find-file "~/todo.org")
+;;(pop-to-buffer "*TODO*")
+(find-file "~/Dropbox/todo.org")

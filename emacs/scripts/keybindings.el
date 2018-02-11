@@ -1,4 +1,4 @@
-p;; BigMoster's custom keybindings
+;; BigMoster's custom keybindings
 
 (defun remap-up-key-in-shell ()
   (local-set-key (kbd "<up>") 'comint-previous-input))
@@ -21,6 +21,8 @@ p;; BigMoster's custom keybindings
   (yank)
   )
 (global-set-key (kbd "C-t") 'duplicate-line)
+
+(global-set-key (kbd "M-c") 'capitalize-word)
 
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -69,19 +71,18 @@ p;; BigMoster's custom keybindings
 
 
 
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-
-
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-
 (global-set-key (kbd "C-g") 'fiplr-find-file)
-(global-set-key (kbd "C-x f") 'project-explorer-open)
+
 (global-set-key (kbd "C-x .") 'next-buffer)
 (global-set-key (kbd "C-x ,") 'previous-buffer)
+(global-set-key (kbd "C-x m") 'magit-status)
+
+
+(setq fiplr-root-markers '(".git" ".svn"))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".ensime_cache" "wordnet"))
+                            (files ("*.jpg" "*.png" "*.zip" "*.pyc" "*.class" "*~"))))
+
+
 
 
 
@@ -114,7 +115,6 @@ This command does not push text to `kill-ring'."
    (point)
    (progn (end-of-line 1) (point)))
   (delete-char 1))
-
 (defun my-delete-line-backward ()
   "Delete text between the beginning of the line to the cursor position.
 This command does not push text to `kill-ring'."
@@ -132,3 +132,16 @@ This command does not push text to `kill-ring'."
 (global-set-key (kbd "C-k") 'my-delete-line)
 (global-set-key (kbd "M-d") 'my-delete-word)
 (global-set-key (kbd "<M-backspace>") 'my-backward-delete-word)
+
+
+
+;; project explorer toggle
+(global-set-key (kbd "C-x f") 'project-explorer-toggle)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+
+
+;; enable this for case sensitive find and replace
+;;(customize-set-variable case-fold-search  nil)
+
+

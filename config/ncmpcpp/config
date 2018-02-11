@@ -1,0 +1,89 @@
+	
+## IWAFU's ncmpcpp config
+
+mpd_music_dir = "~/Music"
+#song_list_format = "{$8%t$9}|{$0%F$9} - {$7(%l)$9}"
+#song_library_format = "{$4%n$9 - }{$0%t$9}|{$4%F$9}"
+#tag_editor_album_format = "{$4(%y)$9 }$7%b$9"
+browser_playlist_prefix = "$8playlist$9 "
+selected_item_prefix = "$0"
+selected_item_suffix = "$9"
+# song_status_format = "{(%l) }{%a - }{%t}|{%F}"
+# song_window_title_format = "{%a - }{%t}|{%F}"
+user_interface = "alternative"
+
+song_columns_list_format = "(6f)[blue]{l} (25)[red]{a} (40)[green]{t|f} (30)[yellow]{b}"
+playlist_display_mode = "columns" (classic/columns)
+browser_display_mode = "classic" (classic/columns)
+search_engine_display_mode = "columns" (classic/columns)
+incremental_seeking = "yes"
+#allow_physical_files_deletion = "no"
+#allow_physical_directories_deletion = "no"
+external_editor = "nano"
+
+progressbar_look = "━━╸"
+colors_enabled = "yes"
+header_window_color = "white"
+volume_color = "white"
+state_line_color = "white"
+state_flags_color = "white"
+main_window_color = "white"
+color1 = "white"
+color2 = "green"
+main_window_highlight_color = "green"
+progressbar_color = "white"
+statusbar_color = "white"
+active_column_color = "yellow"
+empty_tag_color = "yellow"
+
+
+visualizer_color = "red,yellow,green,cyan,blue,red,yellow,green,cyan,blue,red,yellow,green,cyan,blue,red"
+
+#visualizer_color = "white"
+visualizer_look = "●▋"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_type = "spectrum" (spectrum/wave)
+
+
+
+
+
+
+# % egrep -v '^#' .ncmpcpp/config
+# mpd_music_dir = "/home/aswin/Music/"
+# visualizer_in_stereo = "yes"
+# visualizer_fifo_path = "/tmp/mpd.fifo"
+# visualizer_output_name = "my_fifo"
+# visualizer_sync_interval = "30"
+# visualizer_type = "spectrum"
+# visualizer_look = "◆▋"
+# message_delay_time = "3"
+# playlist_shorten_total_times = "yes"
+# playlist_display_mode = "columns"
+# browser_display_mode = "columns"
+# search_engine_display_mode = "columns"
+# playlist_editor_display_mode = "columns"
+# autocenter_mode = "yes"
+# centered_cursor = "yes"
+# user_interface = "alternative"
+# follow_now_playing_lyrics = "yes"
+# locked_screen_width_part = "60"
+# display_bitrate = "yes"
+# external_editor = "nano"
+# use_console_editor = "yes"
+# header_window_color = "cyan"
+# volume_color = "red"
+# state_line_color = "yellow"
+# state_flags_color = "red"
+# progressbar_color = "yellow"
+# progressbar_look = "─⊙┄"
+# statusbar_color = "cyan"
+# visualizer_color = "red"
+# mpd_host = "127.0.0.1"
+# mpd_port = "6600"
+# mouse_list_scroll_whole_page = "yes"
+# lines_scrolled = "1"
+# enable_window_title = "yes"
+# song_columns_list_format = "(40)[cyan]{t|f:Title} (25)[]{a} (30)[red]{b} (7f)[green]{l}"

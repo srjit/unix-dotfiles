@@ -1,14 +1,11 @@
-
-(setq username (getenv "USER"))
-
-(load-file (concat "/home/" username "/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el"))
+(load-file "/home/sree/.emacs.d/elpa/ess-20150622.413/ess-autoloads.el")
 ;; Loading ESS (Emacs Speaks Statistics) into emacs
 ;;(add-to-list 'load-path "/home/sree/.emacs.d/elpa/ess-20150622.413")
 ;; Loading R mode by default
 (autoload 'R-mode "ess-site.el" "ESS" t)
 (add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
 
-(setq ess-use-auto-complete t)
+;;(setq ess-use-auto-complete t)
 
 ;; set ctrl + up arrow for command history in ess console
 (defun ess-readline ()
@@ -32,14 +29,39 @@
 (global-set-key (kbd "\C-cp") 'ess-readline)
 
 
-(defun ess-R-show-objects ()
-  "Calls rdired and associates with R process"
-  (interactive)
-  (if (get-buffer "*R*") ;;Only run if R is running
-      (progn
-	(ess-rdired)
-	(ess-rdired-switch-process))
-    (message "No R process")
-    )
-  )
-(global-set-key (kbd "\C-co") 'ess-R-show-objects)
+(setq ess-use-auto-complete 'script-only)
+
+
+
+(setq ess-R-font-lock-keywords
+    '((ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:assign-ops)
+     (ess-R-fl-keyword:constants . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers)
+     (ess-fl-keyword:operators)
+     (ess-fl-keyword:delimiters)
+     (ess-fl-keyword:=)
+     (ess-R-fl-keyword:F&T)
+     (ess-R-fl-keyword:%op%)))
+
+
+
+
+
+
+(require 'flycheck)
+(add-hook 'ess-mode-hook 'turn-on-pretty-mode)
+
+
+
+
+;;; MARKDOWN
+(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+
+;;; R modes
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))

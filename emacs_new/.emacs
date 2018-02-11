@@ -13,6 +13,8 @@
 ;; load my python mode
 (load-file "/home/sree/.emacs.d/scripts/pythonmode.el")
 
+(xclip-mode 1)
+
 
 
 

@@ -2,6 +2,9 @@
 (setq scala_exec_path "/home/sree/NG/scala-2.10.3/bin/")
 (setq sbt_exec_path "/home/sree/NG/sbt")
 
+
+(setenv "SBT_HOME" "/home/sree/sbt")
+(setenv "PATH" (concat (getenv "PATH")) ":$SBT_HOME/bin")
 (add-to-list 'load-path ensime_path)
 (require 'ensime)
 
@@ -13,6 +16,8 @@
 (push scala_exec_path exec-path)
 (push sbt_exec_path exec-path)
 
+;;(require 'flymake-scala)
+;;(add-hook 'scala-mode-hook 'flymake-scala-load)
 
 
 (add-hook 'sbt-mode-hook '(lambda ()
@@ -46,15 +51,14 @@
    (local-set-key (kbd "C-x '") 'sbt-run-previous-command)))
 
 
-(load-file "/home/sree/.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
-(require 'flymake-scala)
-(add-hook 'scala-mode-hook 'flymake-scala-load)
-
+;; (load-file "/home/sree/.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
+;; (require 'flymake-scala)
+;; (add-hook 'scala-mode-hook 'flymake-scala-load)
 
 
 
 ;#############################################
-;To load scala templates
+;To load python templates
 (add-hook 'find-file-hooks 'maybe-load-template)
 (defun maybe-load-template ()
   (interactive)
@@ -64,5 +68,4 @@
     (insert-file "~/.emacs.d/templates/scala-template.txt")))
 
 
-
-(setq ensime-completion-style 'auto-complete)
+;;(setq ensime-completion-style 'auto-complete)
