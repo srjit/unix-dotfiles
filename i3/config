@@ -23,7 +23,7 @@ set $mod Mod4
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-font xft:Terminus, Operator Mono 9
+font xft:Terminus, Operator Mono 10
 #font pango:Source Sans Pro-10
 
 # Abstand
@@ -37,8 +37,12 @@ bindsym $mod+Return exec terminator
 
 #bindsym $mod+l exec i3lock
 bindsym $mod+l exec "/home/sree/.i3/scripts/i3lock.sh"
-exec xautolock -time 15 -locker '/home/sree/.i3/scripts/i3lock.sh' &
 
+#exit i3
+bindsym $mod+Delete exec "/home/sree/.i3/i3exit.sh"
+for_window [class="I3-exit"] floating enable border normal
+
+exec xautolock -time 15 -locker '/home/sree/.i3/scripts/i3lock.sh' &
 
 # multi-monitor
 bindsym $mod+m         exec xrandr --output HDMI1 --off
@@ -52,16 +56,17 @@ set $blue #005588
 set $gray1 #484848
 set $gray2 #333333
  
-# client.focused            $gray1   $gray1   #FFFFFF   #333333
-# client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
-# client.unfocused          $gray2   $gray2   #FFFFFF   #000000
+client.focused            $gray1   $gray1   #FFFFFF   #333333
+client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
+client.unfocused          $gray2   $gray2   #FFFFFF   #000000
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -b -p 'Name' -fn 'Operator Mono:bold:pixelsize=14' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
-
-# install ROFI to run this - rofi replaces i3 dmenu
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
-#bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Roboto Slab 18" -opacity "80" -lines 8 -line-margin 4 -width 100 -padding 160 -terminal urxvtc
+#bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Operator Mono 13" -opacity "75" -lines 8 -line-margin 4 -width 50 -terminal urxvtc
+
+#bindsym $mod+d exec --no-st
+
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -96,7 +101,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Tab focus right
 bindsym $mod+Shift+Tab focus left		
 
-
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -124,13 +128,36 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # assign workspace variables
-##     http://fontawesome.io/cheatsheet/
-set $WS1  code
-set $WS2  www
-set $WS3  term
-set $WS4  media
-set $WS5  chat
-set $WS6  irc
+#     http://fontawesome.io/cheatsheet/
+# set $WS1    code
+# set $WS2    www
+# #set $WS3    term
+# set $WS3    read
+# set $WS4    media
+# set $WS5   chat
+# set $WS6   irc
+
+set $WS1    1.code 
+set $WS2    2.web 
+#set $WS3    term
+set $WS3    3.notes 
+set $WS4    4.media 
+set $WS5    5.chat 
+set $WS6    6.slack 
+
+# set $WS1 1.
+# set $WS2 2.
+# set $WS3 3.>_
+# set $WS4 4. 
+# set $WS5 5. 
+# set $WS6 6. 
+
+# set $WS1 1.code
+# set $WS2 2.www
+# set $WS3 3.term
+# set $WS4 4.media
+# set $WS5 5.chat
+# set $WS6 6.irc
 
 # switch to workspace
 bindsym $mod+1 workspace $WS1
@@ -147,11 +174,21 @@ bindsym $mod+0 workspace 10
 
 
 # Move to workspace
-assign [class="emacs"] $WS1
+#assign [class="Emacs"] $WS1
 assign [class="google-chrome"] $WS2
-assign [instance="terminator"] $WS3
-assign [class="Gthumb|MPlayer|mpv|Xfburn|Pitivi|Popcorntime|Gmusicbrowser|Ogmrip|Spotify"] $WS4
-assign [class="Thunar|Eclipse|Pinta|Blender|Catfish|Galculator|Codeblocks"] $WS5
+assign [instance="minetime"] $WS3
+#assign [class="Caja|Vlc"] $WS4
+#assign [class="Thunar|Eclipse|Pinta|Blender|Catfish|Galculator|Codeblocks"] $WS5
+assign [class="Telegram"] $WS5
+assign [class="Slack"] $WS6
+
+exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
+#exec --no-startup-id i3-msg 'workspace $ws1; exec minetime'
+# exec --no-startup-id i3-msg 'workspace $ws2; sleep 2; exec google-chrome-stable'
+# exec --no-startup-id i3-msg 'workspace $ws3;'
+# exec --no-startup-id i3-msg 'workspace $ws4;'
+# exec --no-startup-id i3-msg 'workspace $ws5; exec telegram'
+
 
 
 # move focused container to workspace
@@ -203,18 +240,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# volume
+# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +.50  #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -.50  #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# brightness
+# Sreen brightness controls
 bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
 
 
-exec --no-startup-id i3-msg 'exec emacs'
+#exec --no-startup-id i3-msg 'exec emacs24'
+#exec --no-startup-id i3-msg 'exec python /home/sree/scripts/flux.py'
 exec --no-startup-id 'rofi -key-run $mod+d'
+
 exec --no-startup-id exec ~/.dropbox-dist/dropboxd
 exec --no-startup-id feh --bg-fill /home/sree/Pictures/sky.jpg
 exec --no-startup-id nm-applet
@@ -222,47 +261,56 @@ exec --no-startup-id nm-applet
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-# bar {
-#         position top
-#         # status_command ~/.i3/conky
-# 	status_command i3status -c ~/.i3/i3status.conf
-#         colors {
-#                 statusline #AAAAAA
-#                 background #333333
-#                 focused_workspace $gray2 $gray2 #FFFFFF
-#                 inactive_workspace $gray1 $gray1 #AAAAAA
-#         }
-# }
-
 
 bar {
         position top	
 	status_command i3blocks -c ~/.i3/i3blocks.conf
   colors {
-    separator #268bd2
-    background #002b36
-    statusline #839496
-    focused_workspace #fdf6e3 #6c71c4 #fdf6e3
-    active_workspace #fdf6e3 #6c71c4 #fdf6e3
-    inactive_workspace #002b36 #586e75 #002b36
-    urgent_workspace #d33682 #d33682 #fdf6e3
+    separator #fffff #268bd2
+    background  #282828 #002b36
+    statusline  #839496 
+
+    # focused_workspace #484848 #505050 #ff9900 #fdf6e3
+    # active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    # inactive_workspace #002b36 #282828 #fdf6e3
+    # urgent_workspace #d33682 #d33682 #fdf6e3
+    
+	focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
   }
 }
 
 
-client.focused #6c71c4 #6c71c4 #fdf6e3 #6c71c4
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+# bar {
+#     i3bar_command ~./.i3/lemonbar/i3_lemonbar.sh
+# }
 
 
+client.focused #101010 #484848 #F0F0F0 #fdf6e3
+client.focused_inactive #484848 #525050 #a9a9a9 #6c71c4
+client.unfocused #484848 #383838 #FAFAD2 #B0B0B0 #93a1a1
+client.urgent  #d33682 #d33682 #fdf6e3 #dc322f
+
+
+#gap_size 4
 gaps inner 5
 gaps outer 2
 
 smart_gaps on
 smart_borders on
 
+#new_window 1pixel
 
+
+# disable natural scrolling
+exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+
+bindsym Print exec scrot '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/sree/Pictures/scrot'
+
+# bindsym $mod+Delete exec ~/.i3/i3-exit
+# for_window [class="I3-exit"] floating enable border normal
 
 bindsym $mod+Escape mode "System Control:"
 
@@ -284,3 +332,9 @@ mode "System Control:" {
 
 ## Command to switch displays in dual monitors
 ## xrandr --output HDMI-1-1 --mode 1920x1080
+
+# setxkbmap -option ctrl:swapcaps
+# setxkbmap -option ctrl:nocaps
+
+
+#gsettings set org.gnome.desktop.peripherals.touchpad send-events 'enabled'
