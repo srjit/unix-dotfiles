@@ -22,7 +22,7 @@ temp = str(data[0]['Temperature']['Imperial']['Value'])
 if desc=="sunny" or desc=="mostly sunny" or desc=="partly sunny" or desc=="hazy sunshine" or desc=="hot":
     print(fa.icons['sun-o'] + " " + temp + " °F")
     
-elif desc=="mostly cloudy" desc=="cloudy":
+elif desc=="mostly cloudy" or desc=="cloudy":
     print(fa.icons['cloud'] + " " + temp + " °F")
     
 elif desc=="dreary (overcast)":
@@ -37,7 +37,7 @@ elif desc=="showers" or desc=="mostly cloudy w/ showers" or desc=="partly sunny 
 elif desc == "windy"  or desc == "thunderstorms"  or desc == "partly cloudy w/ t-storms":
     print(fa.icons['bolt'] + " " + temp + " °F")
     
-elif desc == "flurries" or desc == "mostly cloudy w/ flurries" or desc == "partly sunny w/ flurries"or desc == "snow"or desc == "mostly cloudy w/ snow"or desc == "ice"or desc == "sleet"or desc == "freezing rain"or desc == "rain and snow"or desc == "cold" or desc == "mostly cloudy w/ snow" or desc == "mostly cloudy w/ flurries")
+elif desc == "flurries" or desc == "mostly cloudy w/ flurries" or desc == "partly sunny w/ flurries"or desc == "snow"or desc == "mostly cloudy w/ snow"or desc == "ice"or desc == "sleet"or desc == "freezing rain" or desc == "rain and snow"or desc == "cold" or desc == "mostly cloudy w/ snow" or desc == "mostly cloudy w/ flurries":
     print(fa.icons['snowflake-o'] + " " + temp + " °F")
     
 elif desc == "clear" or desc == "mostly clear" or  desc == "hazy moonlight":
