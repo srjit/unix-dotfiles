@@ -9,7 +9,7 @@ __email__ = "sreekumar.s@husky.neu.edu"
 __version__ = "0.0.1"
 
 def sendmessage(message):
-    subprocess.Popen(['notify-send', message])
+    subprocess.Popen('notify-send "' +  message + '" -i /home/sree/.i3/scripts/todo.png',shell=True)    
     return
 
 try:
