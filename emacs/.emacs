@@ -136,7 +136,4 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 90))
 (put 'upcase-region 'disabled nil)
 
-
-
-
-
+(add-hook 'after-init-hook 'org-agenda-list)
