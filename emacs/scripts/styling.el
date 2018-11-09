@@ -289,3 +289,11 @@
  '(xterm-color-names-bright
    ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
 
+
+
+
+(setq-default
+ whitespace-line-column 80
+ whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook #'whitespace-mode)
