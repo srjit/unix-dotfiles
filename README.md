@@ -1,4 +1,5 @@
-# unixboxinit
+# Unix Dot Files
+
 Dot files for fresh linux installations
 
 1. Zsh configuration file (self use)
