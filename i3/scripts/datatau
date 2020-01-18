@@ -1,10 +1,12 @@
 #!/bin/bash
 
+sleep 7
+
 output=($(python3 /home/sree/.i3/scripts/datatau.py))
 
 echo "$output" | sed -r 's/\*/\ /g'
 
-MAIN_DOMAIN='http://www.datatau.com/'
+MAIN_DOMAIN='http://www.datatau.com/newest'
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
   xdg-open "${MAIN_DOMAIN}"

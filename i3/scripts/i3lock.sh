@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+rm -rf /tmp/screen_locked.png
+
 # Take a screenshot
 scrot /tmp/screen_locked.png
 

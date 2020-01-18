@@ -1,0 +1,28 @@
+[global_config]
+  title_font = Fira Code weight=450 10
+  title_transmit_bg_color = "#d3d7cf"
+  title_use_system_font = False
+[keybindings]
+  next_tab = <Primary>Tab
+  paste = <Primary>y
+  prev_tab = <Primary><Shift>Tab
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_darkness = 0.83
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Inconsolata for Powerline 12
+    scroll_on_keystroke = False
+    scrollback_infinite = True
+    show_titlebar = False
+    use_system_font = False

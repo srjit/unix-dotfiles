@@ -24,6 +24,8 @@ set $mod Mod4
 # font, it doesn’t scale on retina/hidpi displays.
 
 font xft:Terminus, Operator Mono 10
+#font xft:Terminus, Fantasque Sans Mono 10
+#font xft:Terminus, Inconsolata 11
 #font pango:Source Sans Pro-10
 
 # Abstand
@@ -45,7 +47,7 @@ for_window [class="I3-exit"] floating enable border normal
 exec xautolock -time 15 -locker '/home/sree/.i3/scripts/i3lock.sh' &
 
 # multi-monitor
-bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+m         exec xrandr --output HDMI-1-1--auto && xrandr --output eDP-1-1 --off
 bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --left-of eDP1
 
 # kill focused window
@@ -55,7 +57,7 @@ bindsym $mod+Shift+q kill
 set $blue #005588
 set $gray1 #484848
 set $gray2 #333333
- 
+
 client.focused            $gray1   $gray1   #FFFFFF   #333333
 client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
 client.unfocused          $gray2   $gray2   #FFFFFF   #000000
@@ -99,7 +101,7 @@ bindsym $mod+Shift+Right move right
 
 # switch left and right
 bindsym $mod+Tab focus right
-bindsym $mod+Shift+Tab focus left		
+bindsym $mod+Shift+Tab focus left
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -141,16 +143,17 @@ set $WS1    1.code 
 set $WS2    2.web 
 #set $WS3    term
 set $WS3    3.notes 
-set $WS4    4.media 
+set $WS4    4.mail 
+#set $WS4    4.media 
 set $WS5    5.chat 
 set $WS6    6.slack 
 
 # set $WS1 1.
 # set $WS2 2.
 # set $WS3 3.>_
-# set $WS4 4. 
-# set $WS5 5. 
-# set $WS6 6. 
+# set $WS4 4.
+# set $WS5 5.
+# set $WS6 6.
 
 # set $WS1 1.code
 # set $WS2 2.www
@@ -176,18 +179,20 @@ bindsym $mod+0 workspace 10
 # Move to workspace
 #assign [class="Emacs"] $WS1
 assign [class="google-chrome"] $WS2
-assign [instance="minetime"] $WS3
-#assign [class="Caja|Vlc"] $WS4
+#assign [instance="minetime"] $WS3
+assign [class="thunderbird"] $WS4
 #assign [class="Thunar|Eclipse|Pinta|Blender|Catfish|Galculator|Codeblocks"] $WS5
 assign [class="Telegram"] $WS5
 assign [class="Slack"] $WS6
 
-exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
+exec --no-startup-id i3-msg 'workspace $ws1; exec emacs; exec terminator'
 #exec --no-startup-id i3-msg 'workspace $ws1; exec minetime'
-# exec --no-startup-id i3-msg 'workspace $ws2; sleep 2; exec google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace $ws2; sleep 2; exec google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace $ws4; exec thunderbird'
 # exec --no-startup-id i3-msg 'workspace $ws3;'
 # exec --no-startup-id i3-msg 'workspace $ws4;'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec telegram'
+# exec --no-startup-id i3-msg 'workspace $ws6; exec slack'
 
 
 
@@ -241,9 +246,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +.50  #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -.50  #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+  #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-  #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle  # mute/unmute sound
+
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -254,7 +260,8 @@ bindsym XF86MonBrightnessUp exec light -A 5
 #exec --no-startup-id i3-msg 'exec python /home/sree/scripts/flux.py'
 exec --no-startup-id 'rofi -key-run $mod+d'
 
-exec --no-startup-id exec ~/.dropbox-dist/dropboxd
+exec --no-startup-id exec dropbox
+exec --no-startup-id exec picom
 exec --no-startup-id feh --bg-fill /home/sree/Pictures/sky.jpg
 exec --no-startup-id nm-applet
 
@@ -263,35 +270,46 @@ exec --no-startup-id nm-applet
 
 
 bar {
-        position top	
-	status_command i3blocks -c ~/.i3/i3blocks.conf
-  colors {
-    separator #fffff #268bd2
-    background  #282828 #002b36
-    statusline  #839496 
+        position top
+#	i3bar_command ~/.i3/lemonbar/i3_lemonbar.py
+#	i3bar_command ~/.i3/lemonbar/i3_lemonbar.sh
+#    status_command i3blocks -c ~/.i3/i3blocks.conf
+	#status_command bumblebee-status -m cpu memory battery time pasink pasource -p time.format="%H:%M" -t solarized
 
-    # focused_workspace #484848 #505050 #ff9900 #fdf6e3
+    font pango:Inconsolata 11
+	status_command bumblebee-status -m spotify uptime getcrypto xrandr disk:root weather cpu memory battery pasink date time -t gruvbox-powerline
+
+  colors {
+    separator #fffff
+    background   #282828   ## awesome navy blue - default
+#    background  #D3D3D3
+#    statusline  #839496   ## awesome default statusline
+#    statusline  #282828
+
+    # focused_workspace #484848 #7e3e3e #ff9900 #fdf6e3
     # active_workspace #fdf6e3 #6c71c4 #fdf6e3
-    # inactive_workspace #002b36 #282828 #fdf6e3
+    # inactive_workspace #002b36 #282828 #98AFC7
     # urgent_workspace #d33682 #d33682 #fdf6e3
-    
-	focused_workspace  #4c7899 #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
+
+    # 888888 - nice gray - easy on the eyes
+
+    focused_workspace  #4c7899 #285577 #e9d0d0
+    active_workspace   #333333 #5f676a #d4a2a2
+    inactive_workspace #333333 #222222 #adc571
+    urgent_workspace   #2f343a #900000 #ffffff
   }
 }
-
-
-# bar {
-#     i3bar_command ~./.i3/lemonbar/i3_lemonbar.sh
-# }
 
 
 client.focused #101010 #484848 #F0F0F0 #fdf6e3
 client.focused_inactive #484848 #525050 #a9a9a9 #6c71c4
 client.unfocused #484848 #383838 #FAFAD2 #B0B0B0 #93a1a1
 client.urgent  #d33682 #d33682 #fdf6e3 #dc322f
+
+# client.focused #98AFC7 #98AFC7 #F0F0F0 #fdf6e3
+# client.focused_inactive #484848 #98AFC7 #a9a9a9 #6c71c4
+# client.unfocused #484848 #383838 #FAFAD2 #B0B0B0 #93a1a1
+# client.urgent  #d33682 #d33682 #fdf6e3 #dc322f
 
 
 #gap_size 4
@@ -303,9 +321,9 @@ smart_borders on
 
 #new_window 1pixel
 
-
 # disable natural scrolling
 exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+exec --no-startup-id redshift -o 3700
 
 bindsym Print exec scrot '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/sree/Pictures/scrot'
 
@@ -330,11 +348,14 @@ mode "System Control:" {
 }
 
 
+# disable monitor  - IMPORTANT: THIS WILL TURN OFF LAPTOP SCREEN
+#exec xrandr --output HDMI-1-1--auto && xrandr --output eDP-1-1 --off
+
 ## Command to switch displays in dual monitors
 ## xrandr --output HDMI-1-1 --mode 1920x1080
 
 # setxkbmap -option ctrl:swapcaps
 # setxkbmap -option ctrl:nocaps
 
-
 #gsettings set org.gnome.desktop.peripherals.touchpad send-events 'enabled'
+#setxkbmap -layout us -option ctrl:nocaps

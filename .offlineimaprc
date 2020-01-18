@@ -1,0 +1,26 @@
+[general]
+accounts = Gmail
+maxsyncaccounts = 1
+pythonfile = ~/.offlineimap.py
+
+[Account Gmail]
+localrepository = Local
+remoterepository = Remote
+maxage = 60
+
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Maildir
+
+[Repository Remote]
+type = Gmail
+remoteuser = sreejith2904@gmail.com
+remotepasseval = get_password_emacs("imap.gmail.com", "sreejith2904@gmail.com", "993")
+realdelete = no
+
+folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', '[Gmail]/All Mail', '[Gmail]/Starred', '[Gmail]/Important']
+
+holdconnectionopen = true
+keepalive = 60
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt

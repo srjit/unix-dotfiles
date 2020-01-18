@@ -1,0 +1,7 @@
+[user]
+	email = sreejith2904@gmail.com
+	name = Sreejith S
+[core]
+	editor = emacs -nw
+[format]
+	pretty = format:%C(auto)%h %d%Creset %s%n%Cgreen%ad%Creset %aN <%aE>%n

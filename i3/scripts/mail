@@ -26,7 +26,7 @@ if [[ "${MAIN_DOMAIN}" != http* ]]; then
   MAIN_DOMAIN="https://${MAIN_DOMAIN}"
 fi
 
-# Left click
+#Left click
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
   xdg-open "${MAIN_DOMAIN}"
 fi
