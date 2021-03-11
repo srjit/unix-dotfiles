@@ -1,0 +1,42 @@
+#! /bin/bash
+
+# This script provides a shortcut to open python projects
+# Add your project to hput as it is done from line 27
+# Add the location of this script to zshrc
+# invoke the script by the command <script-file-name> <project shortcut name>
+
+
+
+hinit() {
+    rm -f /tmp/hashmap.$1
+}
+
+project_name=$1
+
+echo $project_name
+
+
+hput() {
+    eval "$1""$2"='$3'
+}
+
+hget() {
+    eval echo '${'"$1$2"'#hash}'
+}
+
+hinit projects
+hput projects "ts" "/Users/d107520/code/spatial-analytics/treasury-solutions-attrition"
+hput projects "pay" "/Users/d107520/code/spatial-analytics/payment-analytics"
+hput projects "prospect" "/Users/d107520/code/spatial-analytics/prospect-analysis"
+hput pricing "prospect" "/Users/d107520/code/spatial-analytics/afs-pricing"
+
+
+change_folder() {
+    cd $1
+}
+
+
+project_folder=(`hget projects $project_name`)
+change_folder $project_folder
+source ~/venvs/mllib/bin/activate
+jupyter lab
