@@ -140,7 +140,9 @@ This command does not push text to `kill-ring'."
 
 
 ;; project explorer toggle
-(global-set-key (kbd "C-x f") 'treemacs)
+(global-set-key (kbd "C-x f") 'neotree)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
 
 
 ;; other links
@@ -164,6 +166,4 @@ This command does not push text to `kill-ring'."
 
 ;; Python Ide Keybinding
 (global-set-key (kbd "C-x p") (lambda () (interactive) (load-file "~/.emacs.d/scripts/pyide.el")))
-
-
-
+(global-set-key (kbd "M-.") 'jedi:goto-definition)
