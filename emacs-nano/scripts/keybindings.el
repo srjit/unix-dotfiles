@@ -159,3 +159,11 @@ This command does not push text to `kill-ring'."
 (global-set-key (kbd "A-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "A-<right>") 'shrink-window-horizontally)
 
+
+
+
+;; Python Ide Keybinding
+(global-set-key (kbd "C-x p") (lambda () (interactive) (load-file "~/.emacs.d/scripts/pyide.el")))
+
+
+

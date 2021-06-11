@@ -40,7 +40,7 @@
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (ob-ipython jupyter auctex cdlatex xclip virtualenvwrapper undo-tree smooth-scrolling org-trello company-tabnine))))
+    (helm-projectile use-package projectile jedi yasnippet-snippets highlight-indent-guides auctex cdlatex xclip virtualenvwrapper undo-tree smooth-scrolling org-trello company-tabnine))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
