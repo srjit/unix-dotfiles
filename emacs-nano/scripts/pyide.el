@@ -24,6 +24,9 @@
   (helm-projectile-on)
   (defconst projectile-mode-line-lighter " P"))
 
+(require 'company-tabnine)
+(add-to-list 'company-backends #'company-tabnine)
+
 ;; <M Tab> Autocomplete at point
 ;;
 (provide 'pyide)

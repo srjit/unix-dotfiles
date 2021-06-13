@@ -31,15 +31,15 @@
 ;; (display-time-mode 1)
 ;; (display-battery-mode 1)
 
-(require 'company-tabnine)
-(add-to-list 'company-backends #'company-tabnine)
 
 (setq company-idle-delay 0)
 (setq recentf-max-menu-items 10)
 
 (load-file "~/.emacs.d/scripts/orgmode.el")
 
-(require 'org-bullets)
+
+
+;;(require 'org-bullets)
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (provide 'custom)
 ;;;  custom.el ends here
