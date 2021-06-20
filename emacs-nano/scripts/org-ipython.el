@@ -12,3 +12,6 @@
         ("i" "#+BEGIN_SRC ipython :session\n#+END_SRC" "")
         ("r" "#+BEGIN_SRC R\n?\n#+END_SRC" "")
         ))
+
+(require 'company-tabnine)
+(add-to-list 'company-backends #'company-tabnine)
