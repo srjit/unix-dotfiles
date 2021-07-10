@@ -1,15 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/sree/.oh-my-zsh"
+export ZSH="/Users/d107520/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="af-magic"
-ZSH_THEME="agnoster"
+
+#ZSH_THEME="agnoster"
+ZSH_THEME="half-life"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -31,7 +31,7 @@ ZSH_THEME="agnoster"
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=13
+# export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -69,7 +69,11 @@ export UPDATE_ZSH_DAYS=13
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf ssh-agent cp colorize web-search virtualenv)
+#plugins=(git virtualenv fzf osx)
+plugins=(git fzf osx)
+
+eval "$(zoxide init zsh)"
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,17 +103,29 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-setopt append_history no_inc_append_history no_share_history
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-#setxkbmap -option ctrl:swapcaps
-setxkbmap -option ctrl:nocaps
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-
-gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
-gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+#eval "$(starship init zsh)"
 
 
-alias python=python3.6
-alias git log=`git config --global format.pretty format:"%C(auto)%h %d%Creset %s%n%Cgreen%ad%Creset %aN <%aE>%n"`
-alias emacs="emacs -nw"
-export PYTHONDONTWRITEBYTECODE=1
+# Custom scripts to make my life easy
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+tmux
+
+
+export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:/Users/d107520/scripts/:$PATH"
+alias project=". project"
+
+alias ls="lsd"
+alias lstree="exa --long --tree"
+alias cat="bat"
+alias tree="dust"
+alias find-in-file="ag"
+
+# find stuff using fd
+# fd <string> <folder path>
