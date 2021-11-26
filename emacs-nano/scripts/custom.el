@@ -1,5 +1,7 @@
 ;; ;; set keybindings
 (load-file "~/.emacs.d/scripts/keybindings.el")
+(load-file "~/.emacs.d/scripts/elegance.el")
+
 (load-file "~/.emacs.d/scripts/styling.el")
 (load-file "~/.emacs.d/scripts/fira-code-mode.el")
 (put 'scroll-left 'disabled nil)

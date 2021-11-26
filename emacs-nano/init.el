@@ -17,7 +17,7 @@
 ;; ---------------------------------------------------------------------
 
 ;;; This fixed garbage collection, makes emacs start up faster ;;;;;;;
-(setq gc-cons-threshold 402653184
+(setq gc-cons-threshold 100000000
       gc-cons-percentage 0.6)
 
 (defvar startup/file-name-handler-alist file-name-handler-alist)
@@ -37,21 +37,13 @@
 
 (package-initialize)
 
-
-
-
-(getenv "PATH")
- (setenv "PATH"
-(concat
- "/Library/TeX/texbin" ":"
-
-(getenv "PATH")))
-
 (load-file "~/.emacs.d/scripts/nano.el")
 (load-file "~/.emacs.d/scripts/custom.el")
+;; (load-file "~/.emacs.d/scripts/nano-sidebar.el")
+;; (load-file "~/.emacs.d/scripts/nano-sidebar-ibuffer.el")
 
 ;; Uncomment the line below to enable jupyter notebook via org mode
-;; (load-file "~/.emacs.d/scripts/org-ipython.el") 
+(load-file "~/.emacs.d/scripts/org-ipython.el") 
 
 
 (recentf-mode 1)
@@ -64,11 +56,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-export-backends (quote (ascii html icalendar latex md odt)))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
-   (quote
-    (magit fiplr helm-projectile use-package projectile jedi yasnippet-snippets highlight-indent-guides auctex cdlatex xclip virtualenvwrapper undo-tree smooth-scrolling org-trello company-tabnine))))
+   '(quelpa nano-agenda ts nano-modeline flycheck magit fiplr helm-projectile use-package projectile jedi yasnippet-snippets highlight-indent-guides auctex cdlatex xclip virtualenvwrapper undo-tree smooth-scrolling org-trello company-tabnine)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -77,3 +68,11 @@
  )
 
 ;;(add-hook 'after-init-hook 'global-company-mode)
+(setq initial-major-mode 'org-mode)
+
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path 
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
