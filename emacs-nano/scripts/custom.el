@@ -39,7 +39,7 @@
 
 (load-file "~/.emacs.d/scripts/orgmode.el")
 
-
+(setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 
 ;;(require 'org-bullets)
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
