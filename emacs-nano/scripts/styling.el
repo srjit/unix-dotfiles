@@ -12,16 +12,10 @@
 
 (electric-pair-mode t)
 
-
 ;; line number while loading and place a line with a small margin
 ;;(global-linum-mode t)
 ;;(setq linum-format "%4d \u2502 ")
 (put 'set-goal-column 'disabled nil)
-
-;; Highlight the current line and keep an underline on the current line where i am in
-;; for underline
-;; (global-hl-line-mode 1)
-;; (set-face-attribute hl-line-face nil :underline t)
 
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
@@ -32,3 +26,10 @@
  whitespace-style '(face lines-tail))
 
 (add-hook 'prog-mode-hook #'whitespace-mode)
+
+;; Highlight the current line and keep an underline on the current line where i am in
+;; for underline
+(global-hl-line-mode 1)
+(set-face-background 'highlight "#222")
+(set-face-foreground 'highlight nil)
+(set-face-underline-p 'highlight t)
