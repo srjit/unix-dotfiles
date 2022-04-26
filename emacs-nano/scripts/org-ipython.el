@@ -15,3 +15,12 @@
 
 (require 'company-tabnine)
 (add-to-list 'company-backends #'company-tabnine)
+
+
+;; Update for code being on org mode pdf export
+;; - newfloat - is a theme
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("newfloat" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
