@@ -7,6 +7,7 @@
    (jupyter . t)))
 
 ;; put <py and press tab in org mode
+;; Or C-c C-,  if org mode > 9.2: https://emacs.stackexchange.com/questions/52441/how-to-modify-org-structure-template-alist-after-org-mode-9-2
 (setq org-structure-template-alist
       '(("py" "#+BEGIN_SRC jupyter-python :session py \n#+END_SRC" "")
         ("i" "#+BEGIN_SRC ipython :session\n#+END_SRC" "")
@@ -15,6 +16,7 @@
 
 (require 'company-tabnine)
 (add-to-list 'company-backends #'company-tabnine)
+
 
 
 ;; Update for code being on org mode pdf export
