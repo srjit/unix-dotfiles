@@ -17,9 +17,9 @@
 ;; (setq org-startup-with-inline-images t)
 
 ;;; Code:
-(setq org-agenda-files '("/Users/d107520/trello/103-gordon-st.org"
-                         "/Users/d107520/trello/citizens.org"
-                         "/Users/d107520/trello/learning.org"))
+;;(setq org-agenda-files '("/Users/d107520/trello/103-gordon-st.org"
+;;                         "/Users/d107520/trello/citizens.org"
+;;                         "/Users/d107520/trello/learning.org"))
 
 
 
@@ -68,6 +68,12 @@
             (org-cdlatex-mode)
             (add-hook 'post-self-insert-hook #'krofna-hack 'append 'local)))
 
+
+;; fold all bullets
+(global-set-key "\C-x\ \C-y" 'outline-hide-sublevels)
+(setq org-startup-folded t)
+
+(setq org-startup-with-latex-preview t)
 
 (provide 'orgmode)
 ;;; orgmode.el ends here
