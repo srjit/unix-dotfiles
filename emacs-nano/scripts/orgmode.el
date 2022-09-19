@@ -73,6 +73,8 @@
 (global-set-key "\C-x\ \C-y" 'outline-hide-sublevels)
 (setq org-startup-folded t)
 
+(global-set-key "\C-x\ \C-t" 'org-sidebar-toggle)
+
 (setq org-startup-with-latex-preview t)
 
 (provide 'orgmode)
