@@ -33,3 +33,8 @@
 (set-face-background 'highlight "#222")
 (set-face-foreground 'highlight nil)
 (set-face-underline-p 'highlight t)
+
+
+;; Dark Appearence for window title bar
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
