@@ -1,4 +1,4 @@
-(setq nano-font-family-monospaced "Fira Code")
+(setq nano-font-family-monospaced "Consolas ligaturized v3")
 (setq nano-font-family-proportional nil)
 (setq nano-font-size 12)
 
